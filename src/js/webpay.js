@@ -72,9 +72,7 @@ webpay.prototype.setup = function(itemSummary, total){
 		"debug": {
  			"APIKey": "6874ad7c7c10403396811780aef9ecf3"
  		},
-		"payment": {
-			"additionalData": JSON.stringify(additionalData)
-		}
+		"additionalData": JSON.stringify(additionalData)
 	}
 
 	// set testMode if defined
