@@ -15,6 +15,7 @@ webpay.prototype.setup = function(itemSummary, total){
 	var product = {};
 	var userId = "acct_17irF7F6yPzJ7wOR";
 	var testMode = false;
+	var additionalData = {};
 
 	var serverSwitch = $('#serverSwitch').val();
 	switch(serverSwitch) {
@@ -22,10 +23,16 @@ webpay.prototype.setup = function(itemSummary, total){
 			product['id'] = 'd1de6bf60e394c6baa636c';
 			userId = 'sandbox_qp6s8528_8tvdc68tr86hsvfy';
 			testMode = true;
+			additionalData['clientSdkMetadata'] = {
+				source: "bt-stg-on"
+			};
 			break;
 		case 'bt-stg-off':
 			product['id'] = 'd1de6bf60e394c6baa636c';
 			userId = 'production_7mhvr35p_vwfg3wgq8b3n3xss';
+			additionalData['clientSdkMetadata'] = {
+				source: "bt-stg-off"
+			};
 			break;
 		case 'stripe':
 			product['id'] = 'c8e2edebcab74d8bb76658';
@@ -64,7 +71,10 @@ webpay.prototype.setup = function(itemSummary, total){
 		"merchantGatewayParameter": {"userId": userId },
 		"debug": {
  			"APIKey": "6874ad7c7c10403396811780aef9ecf3"
- 		}
+ 		},
+		"payment": {
+			"additionalData": JSON.stringify(additionalData)
+		}
 	}
 
 	// set testMode if defined
