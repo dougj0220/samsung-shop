@@ -12,9 +12,21 @@ webpay.prototype.setup = function(itemSummary, total){
 	}
 
 	// set product id based on option selected in drop down
-	var product = {}; 
+	var product = {};
+	var userId = "acct_17irF7F6yPzJ7wOR";
+	var testMode = false;
+
 	var serverSwitch = $('#serverSwitch').val();
-	switch(serverSwitch){
+	switch(serverSwitch) {
+		case 'bt-stg-on':
+			product['id'] = 'd1de6bf60e394c6baa636c';
+			userId = 'sandbox_qp6s8528_8tvdc68tr86hsvfy';
+			testMode = true;
+			break;
+		case 'bt-stg-off':
+			product['id'] = 'd1de6bf60e394c6baa636c';
+			userId = 'production_7mhvr35p_vwfg3wgq8b3n3xss';
+			break;
 		case 'stripe':
 			product['id'] = 'c8e2edebcab74d8bb76658';
 			break;
@@ -40,19 +52,26 @@ webpay.prototype.setup = function(itemSummary, total){
 			product['id'] = '7c1a34644e774837bc44b1';
 			break;
 	}
+
   //data to be used alongside spay
-  var payData = {		
-		//product ID obtained from Samsung onboarding portal		
+  var payData = {
+		//product ID obtained from Samsung onboarding portal
 		"version":'1',
-		'productId': product['id'],	
-		'allowedCardNetworks': ['AMEX', 'mastercard', 'visa'],		
-		'orderNumber': "1233123",		
+		'productId': product['id'],
+		'allowedCardNetworks': ['AMEX', 'mastercard', 'visa'],
+		'orderNumber': "1233123",
 		'merchantName': 'Shop Samsung (demo)',
-		"merchantGatewayParameter": {"userId": " acct_17irF7F6yPzJ7wOR" },
-		"debug": {				
- 			"APIKey": "6874ad7c7c10403396811780aef9ecf3"		
- 		}	  
-	}		
+		"merchantGatewayParameter": {"userId": userId },
+		"debug": {
+ 			"APIKey": "6874ad7c7c10403396811780aef9ecf3"
+ 		}
+	}
+
+	// set testMode if defined
+	if (testMode) {
+		payData['testMode'] = testMode
+	}
+
   console.log(product);
 	// Supported payment methods
 	var supportedInstruments = [
@@ -67,9 +86,9 @@ webpay.prototype.setup = function(itemSummary, total){
       ],
       supportedTypes: ['prepaid', 'debit', 'credit']
     }
-  },		
- */	{		
- 		supportedMethods: ['https://spay.samsung.com'], // current url		
+  },
+ */	{
+ 		supportedMethods: ['https://spay.samsung.com'], // current url
  		data: payData
 	}
  	];
@@ -151,7 +170,7 @@ webpay.prototype.setup = function(itemSummary, total){
 			resolve(details);
 		}));
 	});
-	 
+
  	//detect shipping option changes
  	payment.addEventListener('shippingoptionchange', e => {
 	  e.updateWith(((details, shippingOption) => {
@@ -176,8 +195,8 @@ webpay.prototype.setup = function(itemSummary, total){
 		  })(details, payment.shippingOption));
 		});
 
-	// Make PaymentRequest show to display payment sheet 
-	payment.show().then( paymentResponse => {	
+	// Make PaymentRequest show to display payment sheet
+	payment.show().then( paymentResponse => {
 		console.log(paymentResponse);
 	  // Process response
 	  var paymentData = {
@@ -188,7 +207,7 @@ webpay.prototype.setup = function(itemSummary, total){
 		  // shipping address information
 		  "address": JSON.stringify(paymentResponse.shippingAddress)
 	  };
-	  sessionStorage.setItem("samsungPayShopDemoEmail", paymentResponse.payerEmail); 
+	  sessionStorage.setItem("samsungPayShopDemoEmail", paymentResponse.payerEmail);
 	  console.log(paymentData);
 	  console.log(JSON.stringify(paymentData));
 	  processPayment(paymentResponse, finalCost).then( success => {
