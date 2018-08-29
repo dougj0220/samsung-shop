@@ -21,7 +21,7 @@ webpay.prototype.setup = function(itemSummary, total){
 	switch(serverSwitch) {
 		case 'bt-stg-on':
 			product['id'] = 'd1de6bf60e394c6baa636c';
-			userId = 'sandbox_qp6s8528_8tvdc68tr86hsvfy';
+			userId = 'sandbox_tmxhyf7d_dcpspy2brwdjr3qn';
 			testMode = true;
 			additionalData['clientSdkMetadata'] = {
 				source: "bt-stg-on"
@@ -29,9 +29,24 @@ webpay.prototype.setup = function(itemSummary, total){
 			break;
 		case 'bt-stg-off':
 			product['id'] = 'd1de6bf60e394c6baa636c';
-			userId = 'production_7mhvr35p_vwfg3wgq8b3n3xss';
+			userId = 'production_pjjfdqg2_dfy45jdj3dxkmz5m';
 			additionalData['clientSdkMetadata'] = {
 				source: "bt-stg-off"
+			};
+			break;
+		case 'bt-prd-on':
+			product['id'] = '3854ae9b78264f59880bf3';
+			userId = 'sandbox_tmxhyf7d_dcpspy2brwdjr3qn';
+			testMode = true;
+			additionalData['clientSdkMetadata'] = {
+				source: "bt-prd-on"
+			};
+		  break;
+		case 'bt-prd-off':
+			product['id'] = '3854ae9b78264f59880bf3';
+			userId = 'production_pjjfdqg2_dfy45jdj3dxkmz5m';
+			additionalData['clientSdkMetadata'] = {
+				source: "bt-prd-off"
 			};
 			break;
 		case 'stripe':
