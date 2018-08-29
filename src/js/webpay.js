@@ -231,6 +231,7 @@ webpay.prototype.setup = function(itemSummary, total){
 		  "address": JSON.stringify(paymentResponse.shippingAddress)
 	  };
 	  sessionStorage.setItem("samsungPayShopDemoEmail", paymentResponse.payerEmail);
+		sessionStorage.setItem("paymentData", JSON.stringify(paymentData));
 	  console.log(paymentData);
 	  console.log(JSON.stringify(paymentData));
 	  processPayment(paymentResponse, finalCost).then( success => {
@@ -239,7 +240,7 @@ webpay.prototype.setup = function(itemSummary, total){
 	  	if (success) {
 				// Call complete to hide payment sheet
 				paymentResponse.complete('success');
-				window.top.location.href = 'https://maheshkk.github.io/samsung-shop/order-confirm.html';
+				window.top.location.href = 'https://manank.github.io/samsung-shop/order-confirm.html';
 	   	} else {
 		   	// Call complete to hide payment sheet
 				paymentResponse.complete('fail');
