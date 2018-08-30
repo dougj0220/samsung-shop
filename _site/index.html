@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<title>Shop Samsung (demo)</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.js" crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="src/js/pg.js"></script>
+    <script src="src/js/webpay.js"></script>
+    <script src="src/js/script.js"></script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <nav class="product-filter">
+        <div>
+            <select class="form-select" id="serverSwitch">
+              <option value="bt-prd-on">BT-PRD-ON</option>
+              <option value="bt-prd-off">BT-PRD-OFF</option>
+              <option value="bt-stg-on">BT-STG-ON</option>
+              <option value="bt-stg-off">BT-STG-OFF</option>
+              <option value="fd-sim-prd">FD-Sim-PRD</option>
+              <option value="fd-cat-prd">FD-CAT-PRD</option>
+              <option value="stg-sim-prd">STG-FD-SIM</option>
+              <option value="stg-cat-prd">STG-FD-CAT</option>
+              <option value="stripe">Stripe</option>
+              <option value="stripe-prd">Stripe-PRD</option>
+              <option value="elmo">Winston's Test</option>
+	        </select>
+        </div>
+        <div>
+            <h2 align="center">Samsung Shop</h2>
+        </div>
+        <div id = "shopping-cart">
+            <img id = "shopping-cart-image" src="src/img/logo.png">
+            <i id = "shopping-cart-count">0</i>
+        </div>
+    </nav>
+
+    <section class="products">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/samsunggalaxys7.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Samsung Galaxy S7</h5>
+                <h6>$19999.99</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gears3frontier.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear S3 Frontier</h5>
+                <h6>$299.99</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gears3classic.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear S3 Classic</h5>
+                <h6>$299.99</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gear360camera.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear 360 Camera</h5>
+                <h6>$299.99</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gearvr2.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear VR 2</h5>
+                <h6>$99.99</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gearvr.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear VR</h5>
+                <h6>$0.00</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/wirelesscharger.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Wireless Charger</h5>
+                <h6>$0.01</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/gears2.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Gear S2</h5>
+                <h6>$0.02</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/s3wirelesscharger.jpg">
+            </div>
+            <div class="product-info">
+                <h5>S3 Wireless Charger</h5>
+                <h6>$0.03</h6>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="src/img/bluetoothheadphones.jpg">
+            </div>
+            <div class="product-info">
+                <h5>Bluetooth Headphone</h5>
+                <h6>$0.99</h6>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="product-card">
+        <div class="product-image">
+            <img src="src/img/oledtv.jpg">
+        </div>
+        <div class="product-info">
+            <h5>Custom item</h5>
+            <h6 id="customValue">$500000.00</h6>
+        </div>
+    </div>
+    <input id="customInput" type="number" placeholder="$1000.00"></input>
+
+    <div id="single-product">
+        <div class="single-product-card">
+            <div class="product-page-hide">X</div>
+            <div class="product-image">
+                <img src="">
+            </div>
+            <div class="product-info">
+                <h2></h2>
+                <h1></h1>
+            </div>
+        </div>
+        <div>
+            <div class="product-buy-button" id="addToCart">
+                <h5>ADD TO CART</h5>
+            </div>
+            <div class="product-buy-button" id="buyNow">
+                <h5></h5>
+            </div>
+
+        </div>
+    </div>
+
+    <label>Valid domain with allowpaymentrequest attribute</label>
+    <iframe src="https://wpay.herokuapp.com/" allowpaymentrequest></iframe>
+    <label>Valid domain, no allowpaymentrequest attribute</label>
+    <iframe src="https://wpay.herokuapp.com/"></iframe>
+    <iframe src="https://winstonchen.github.io/invalid-iframe/invalid-both.html"></iframe>
+    <iframe src="https://winstonchen.github.io/invalid-iframe/invalid-domain.html" allowpaymentrequest></iframe>
+    <iframe src="https://winstonchen.github.io/sdcspay/" allowpaymentrequest></iframe>
+</body>
+</html>
