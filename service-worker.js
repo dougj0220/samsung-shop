@@ -1,5 +1,5 @@
 /*
-    service worker that needs to be placed in the root directory of project    
+    service worker that needs to be placed in the root directory of project
 
 */
 // Use a cacheName for cache versioning
@@ -15,7 +15,7 @@ var filesToCache = [
     './cart.html',
     './checkout.html',
 //    './index.html',
-    './order-confirm.html',
+//    './order-confirm.html',
     './src/img/logo.png',
     './src/img/samsunggalaxys7.jpg',
     './src/img/gears3frontier.jpg',
@@ -33,7 +33,7 @@ var filesToCache = [
 // During the installation phase, you'll usually want to cache static assets.
 self.addEventListener('install', e => {
     console.log('[ServiceWorker] Install');
-    // Once the service worker is installed, go ahead and 
+    // Once the service worker is installed, go ahead and
     // fetch the resources to make this work offline.
     e.waitUntil(
         caches.open(cacheName).then( cache => {
@@ -49,7 +49,7 @@ self.addEventListener('install', e => {
 self.addEventListener('fetch', event => {
     console.log('[ServiceWorker] Fetch', event.request.url);
     // cache falling back to network - check cache then network
-    // tries to loads cache first then tries network 
+    // tries to loads cache first then tries network
     event.respondWith(
         caches.match(event.request).then( response => {
             return response || fetch(event.request);
